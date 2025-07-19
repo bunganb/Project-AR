@@ -1,0 +1,54 @@
+# ===== Unity generated folders =====
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+MemoryCaptures/
+
+# ===== Visual Studio / JetBrains Rider =====
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+
+# ===== OS files =====
+.DS_Store
+Thumbs.db
+
+# ===== Unity Cloud Build =====
+/[Uu]ser[Ss]ettings/
+
+# ===== Crash Reports =====
+sysinfo.txt
+
+# ===== Auto-generated meta files =====
+*.apk
+*.aab
+*.xcworkspace/
+*.xcuserstate
+*.xcuserdata/
+*.gradle/
+*.idea/
+
+# ===== Unity Asset Store tools cache =====
+.assetstoretools*
+
+# ===== Unity Collaborate =====
+.collabignore
+
+# ===== Rider =====
+.idea/
+*.sln.iml
+
+# ===== Build pipeline cache (Unity 2022+) =====
+Artifacts/

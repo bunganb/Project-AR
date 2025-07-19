@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5501717261854880373
+  m_GuidHigh: 1155074876155062441
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5079970031607469071
+      m_GuidHigh: 2481233130032905886
+    m_SerializedTextureGuid:
+      m_GuidLow: 6162273209948171381
+      m_GuidHigh: 5605404138121084731
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: girl
+    m_Texture: {fileID: 2800000, guid: d7ddec75cad555843b3f366b5d65ca4d, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4730669104459159974
+      m_GuidHigh: 5856081001875567755
+    m_SerializedTextureGuid:
+      m_GuidLow: 17844522055383074488
+      m_GuidHigh: 3054525875622218601
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: hanni
+    m_Texture: {fileID: 2800000, guid: d9bb46b87a43f7a4698bb3ad19db632a, type: 3}

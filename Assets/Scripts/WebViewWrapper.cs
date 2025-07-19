@@ -24,21 +24,15 @@ public class WebViewWrapper : MonoBehaviour
     {
         if (_webViewObject != null)
         {
-            _webViewObject.SetVisibility(true);
-            return;
+            _webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
         }
 
-        // Initialize a new WebView object
-        _webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
         _webViewObject.Init(
-            // Callback action when the page finishes loading
             (msg) => {
                 Debug.Log($"Page loaded: {msg}");
             }
         );
 
-        // Set the margins (left, top, right, bottom) in pixels
-        // This makes the webview appear below the status bar and above a bottom banner if you have one
         if (isFullScreen)
         {
             _webViewObject.SetMargins(0, 0, 0, 0);
@@ -48,8 +42,9 @@ public class WebViewWrapper : MonoBehaviour
             _webViewObject.SetMargins(50, 150, 50, 50);
         }
 
-        // Load the URL
         _webViewObject.LoadURL(url);
+        
+        _webViewObject.SetVisibility(true);
     }
 
     public void HideWebView()

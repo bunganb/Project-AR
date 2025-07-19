@@ -3,6 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class MenuNavigation : MonoBehaviour
 {
+    public static MenuNavigation Instance;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     public void GoToMenuScene()
     {
         SceneManager.LoadScene("Scenes/Menu");
@@ -27,5 +42,4 @@ public class MenuNavigation : MonoBehaviour
     {
         SceneManager.LoadScene("Scenes/Gallery Marker");
     }
-    
 }

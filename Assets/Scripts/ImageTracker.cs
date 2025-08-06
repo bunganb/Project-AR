@@ -23,7 +23,6 @@ public class ImageTracker : MonoBehaviour
     private Dictionary<string, GameObject> spawnedPrefabs = new Dictionary<string, GameObject>();
     private string currentActiveMarker = null;
 
-
     void Awake()
     {
         trackedImages = GetComponent<ARTrackedImageManager>();
@@ -44,7 +43,6 @@ public class ImageTracker : MonoBehaviour
         {
             ShowMarkerContent(trackedImage);
         }
-
         foreach (var trackedImage in args.updated)
         {
             if (trackedImage.trackingState == TrackingState.Tracking)
@@ -80,7 +78,8 @@ public class ImageTracker : MonoBehaviour
             if (!spawnedPrefabs.ContainsKey(name))
             {
                 var instance = Instantiate(data.prefab, trackedImage.transform);
-                instance.transform.localPosition = new Vector3(0f, 0.05f, 0f); // posisi di atas marker
+                instance.transform.localPosition = new Vector3(0f, 0.05f, 0f);
+                instance.transform.localScale = Vector3.one * 0.1f;
                 spawnedPrefabs[name] = instance;
             }
 

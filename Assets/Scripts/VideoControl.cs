@@ -24,17 +24,12 @@ public class VideoController : MonoBehaviour
             replayButton.onClick.AddListener(ReplayVideo);
 
         videoPlayer.started += OnVideoStarted;
-        double duration = videoPlayer.length;
-
-        Invoke(nameof(UpdatePlayPauseButtonText), 0.1f);
-        int minutes = Mathf.FloorToInt((float)duration / 60);
-        int seconds = Mathf.FloorToInt((float)duration % 60);
-        Debug.Log(minutes + ":" + seconds);
     }
 
     private void OnVideoStarted(VideoPlayer vp)
     {
         UpdatePlayPauseButtonText();
+        
     }
 
     public void TogglePlayPause()

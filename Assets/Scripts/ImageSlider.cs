@@ -35,6 +35,7 @@ public class ImageSlider : MonoBehaviour
         if (currentIndex < 0)
             currentIndex = imageList.Length - 1;
 
+
         UpdateImage();
     }
 
@@ -43,6 +44,7 @@ public class ImageSlider : MonoBehaviour
         if (imageList.Length > 0)
         {
             displayImage.sprite = imageList[currentIndex];
+            
         }
     }
     public void DownloadCurrentImage()
@@ -53,10 +55,8 @@ public class ImageSlider : MonoBehaviour
 
         if (!texture.isReadable)
         {
-            Debug.LogWarning("Texture is not readable. Enable 'Read/Write Enabled' in import settings.");
             return;
         }
-
         Texture2D copy = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
         copy.SetPixels(texture.GetPixels());
         copy.Apply();
@@ -64,8 +64,6 @@ public class ImageSlider : MonoBehaviour
         byte[] bytes = copy.EncodeToPNG();
         string filePath = Application.persistentDataPath + $"/image_{currentIndex}.png";
         System.IO.File.WriteAllBytes(filePath, bytes);
-
-        Debug.Log("Image saved to: " + filePath);
 
         #if UNITY_EDITOR
                 UnityEditor.EditorUtility.RevealInFinder(filePath);

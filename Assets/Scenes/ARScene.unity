@@ -3063,7 +3063,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 517e3b323c8decc4eab7752e5ffd3b27, type: 3}
     question: mancing emosi apakah boleh ?
   contentHandler: {fileID: 63945721}
-  hideUIDelay: 2
+  hideUIDelay: 1
 --- !u!1 &1682000108
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,11 +48,13 @@ public class ImageTracker : MonoBehaviour
 
         foreach (var trackedImage in args.updated)
         {
-            Debug.Log($"[Update] {trackedImage.referenceImage.name} state: {trackedImage.trackingState}");
-        
-            if (trackedImage.trackingState == TrackingState.Tracking || trackedImage.trackingState == TrackingState.Limited)
+            if (trackedImage.trackingState == TrackingState.Tracking)
             {
-                ShowMarkerContent(trackedImage);
+                UpdateMarkerContent(trackedImage);
+                if (currentActiveMarker != trackedImage.referenceImage.name)
+                {
+                    ShowMarkerContent(trackedImage);
+                }
             }
             else
             {
@@ -62,7 +64,6 @@ public class ImageTracker : MonoBehaviour
 
         foreach (var trackedImage in args.removed)
         {
-            Debug.Log($"[Removed] {trackedImage.referenceImage.name} was removed.");
             HideMarkerContent(trackedImage);
         }
     }
@@ -117,29 +118,21 @@ public class ImageTracker : MonoBehaviour
     {
         string name = trackedImage.referenceImage.name;
 
-        if (spawnedPrefabs.ContainsKey(name))
+        if (spawnedPrefabs.TryGetValue(name, out var spawnedPrefab))
         {
-            spawnedPrefabs[name].SetActive(false);
+            spawnedPrefab.SetActive(false);
         }
-
+    
         if (currentActiveMarker == name)
-        {
-            if (hideUICoroutine != null)
-            {
-                StopCoroutine(hideUICoroutine);
-            }
-
-            hideUICoroutine = StartCoroutine(DelayedHideUI(name));
-        }
-    }
-    private IEnumerator DelayedHideUI(string markerName)
-    {
-        yield return new WaitForSeconds(hideUIDelay);
-
-        if (currentActiveMarker == markerName)
         {
             contentHandler.HideContent();
             currentActiveMarker = null; 
+        }
+    
+        if (hideUICoroutine != null)
+        {
+            StopCoroutine(hideUICoroutine);
+            hideUICoroutine = null;
         }
     }
 

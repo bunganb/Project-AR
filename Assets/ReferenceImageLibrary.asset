@@ -18,22 +18,32 @@ MonoBehaviour:
     m_Storage: []
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5079970031607469071
-      m_GuidHigh: 2481233130032905886
+      m_GuidLow: 4813706305534938322
+      m_GuidHigh: 6090045680586081180
     m_SerializedTextureGuid:
-      m_GuidLow: 6162273209948171381
-      m_GuidHigh: 5605404138121084731
-    m_Size: {x: 0.2, y: 0.2}
+      m_GuidLow: 10350428460714474087
+      m_GuidHigh: 16605538831515121112
+    m_Size: {x: 0.2, y: 0.19983417}
     m_SpecifySize: 1
-    m_Name: girl
-    m_Texture: {fileID: 2800000, guid: d7ddec75cad555843b3f366b5d65ca4d, type: 3}
+    m_Name: understanding
+    m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 4730669104459159974
-      m_GuidHigh: 5856081001875567755
+      m_GuidLow: 5281911328424006842
+      m_GuidHigh: 13758499586447495853
     m_SerializedTextureGuid:
-      m_GuidLow: 17844522055383074488
-      m_GuidHigh: 3054525875622218601
+      m_GuidLow: 11206196702799704350
+      m_GuidHigh: 6939084867738647512
     m_Size: {x: 0.2, y: 0.2}
     m_SpecifySize: 1
-    m_Name: hanni
-    m_Texture: {fileID: 2800000, guid: d9bb46b87a43f7a4698bb3ad19db632a, type: 3}
+    m_Name: bicker
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4732714380218269647
+      m_GuidHigh: 8335140103927641508
+    m_SerializedTextureGuid:
+      m_GuidLow: 1505586047663610103
+      m_GuidHigh: 16562398988582776729
+    m_Size: {x: 0.2, y: 0.2}
+    m_SpecifySize: 1
+    m_Name: empathy
+    m_Texture: {fileID: 0}

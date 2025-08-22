@@ -15,17 +15,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Gallery Marker.unity
     guid: 5e94e33ec8001204e9f8e8b06aa48bde
   - enabled: 1
-    path: Assets/Scenes/VideoPlayerScene(VidSource).unity
-    guid: 0b8b25b79ddb9b642b41142d8be57964
-  - enabled: 1
     path: Assets/Scenes/VideoPlayerScene(Youtube).unity
     guid: 22923286363f5e2409592a380ab65538
   - enabled: 1
     path: Assets/Scenes/ARScene.unity
     guid: cd31bae48bd0afb4f93ce2b72530addd
   - enabled: 1
-    path: Assets/Scenes/GuideScene.unity
-    guid: 232aa41bb937539459f707c504ec5f30
+    path: Assets/Scenes/InputName.unity
+    guid: 15622ffc0b717a54b9dc8a75b8705a40
+  - enabled: 1
+    path: Assets/Scenes/VideoPlayerScene(Video Source).unity
+    guid: 5fbb6d2961b95cb47a54290994f0ef00
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: ab9678cf43ef575408d18ae38d739109, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

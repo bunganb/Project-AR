@@ -1,17 +1,34 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SceneButton : MonoBehaviour
 {
     public enum TargetScene
     {
-        Menu, YoutubeVideo, VideoSource, AR, Guide, Marker,Title
+        Menu, YoutubeVideo, VideoSource, AR, Guide, Marker, Title, InputName
     }
 
     public TargetScene scene;
+    public TMP_InputField nameInput; 
+    public bool requireName;
 
     public void OnButtonClick()
     {
-        Debug.Log("Clicked button for: " + scene);
+        if (requireName)
+        {
+            string userName = nameInput.text.Trim();
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                Debug.LogWarning("Nama harus diisi!");
+                return;
+            }
+
+            PlayerPrefs.SetString("UserName", userName);
+            PlayerPrefs.Save();
+        }
+
         if (MenuNavigation.Instance == null)
         {
             Debug.LogError("MenuNavigation instance is missing!");
@@ -32,14 +49,14 @@ public class SceneButton : MonoBehaviour
             case TargetScene.AR:
                 MenuNavigation.Instance.GoToAR();
                 break;
-            case TargetScene.Guide:
-                MenuNavigation.Instance.GoToGuide();
-                break;
             case TargetScene.Marker:
                 MenuNavigation.Instance.GoToMarker();
                 break;
             case TargetScene.Title:
                 MenuNavigation.Instance.GoToTitleScene();
+                break;
+            case TargetScene.InputName:
+                MenuNavigation.Instance.GoToInputName();
                 break;
         }
     }

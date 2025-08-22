@@ -19,10 +19,14 @@ public class ARContentHandler : MonoBehaviour
     [Header("Animation")]
     public float slideDuration = 0.5f;
     private bool isAnimating = false;
+    
+    // Store original panel height
+    private float panelHeight;
 
     private void Awake()
     {
         quizCanvasGroup = quizPanel.GetComponent<CanvasGroup>();
+        panelHeight = quizPanel.rect.height;
     }
 
     private void Start()
@@ -38,8 +42,7 @@ public class ARContentHandler : MonoBehaviour
 
         if (quizPanel != null)
         {
-            quizPanel.offsetMin = new Vector2(0, -600);
-            quizPanel.offsetMax = new Vector2(0, -600);
+            quizPanel.anchoredPosition = new Vector2(quizPanel.anchoredPosition.x, -panelHeight);
             
             if (quizCanvasGroup != null)
             {
@@ -104,25 +107,27 @@ public class ARContentHandler : MonoBehaviour
             quizCanvasGroup.blocksRaycasts = true;
         }
 
-        Vector2 startMin = new Vector2(0, -600);
-        Vector2 startMax = new Vector2(0, -600);
-        Vector2 end = Vector2.zero;
+        Vector2 startPos = new Vector2(panel.anchoredPosition.x, -panelHeight - 50);
+        Vector2 endPos = new Vector2(panel.anchoredPosition.x, 0);
 
         float time = 0f;
         while (time < duration)
         {
-            panel.offsetMin = Vector2.Lerp(startMin, end, time / duration);
-            panel.offsetMax = Vector2.Lerp(startMax, end, time / duration);
+            float t = time / duration;
+            t = t * t * (3f - 2f * t);
+            
+            panel.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+            
             if (quizCanvasGroup != null)
             {
-                quizCanvasGroup.alpha = Mathf.Lerp(0, 1, time / duration);
+                quizCanvasGroup.alpha = Mathf.Lerp(0, 1, t);
             }
+            
             time += Time.deltaTime;
             yield return null;
         }
 
-        panel.offsetMin = end;
-        panel.offsetMax = end;
+        panel.anchoredPosition = endPos;
         if (quizCanvasGroup != null)
         {
             quizCanvasGroup.alpha = 1;
@@ -140,25 +145,27 @@ public class ARContentHandler : MonoBehaviour
             quizCanvasGroup.blocksRaycasts = false;
         }
 
-        Vector2 start = Vector2.zero;
-        Vector2 endMin = new Vector2(0, -600);
-        Vector2 endMax = new Vector2(0, -600);
+        Vector2 startPos = new Vector2(panel.anchoredPosition.x, 0);
+        Vector2 endPos = new Vector2(panel.anchoredPosition.x, -panelHeight - 50);
 
         float time = 0f;
         while (time < duration)
         {
-            panel.offsetMin = Vector2.Lerp(start, endMin, time / duration);
-            panel.offsetMax = Vector2.Lerp(start, endMax, time / duration);
+            float t = time / duration;
+            t = t * t * (3f - 2f * t);
+            
+            panel.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+            
             if (quizCanvasGroup != null)
             {
-                quizCanvasGroup.alpha = Mathf.Lerp(1, 0, time / duration);
+                quizCanvasGroup.alpha = Mathf.Lerp(1, 0, t);
             }
+            
             time += Time.deltaTime;
             yield return null;
         }
 
-        panel.offsetMin = endMin;
-        panel.offsetMax = endMax;
+        panel.anchoredPosition = endPos;
         if (quizCanvasGroup != null)
         {
             quizCanvasGroup.alpha = 0;

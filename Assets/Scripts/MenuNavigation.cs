@@ -32,18 +32,19 @@ public class MenuNavigation : MonoBehaviour
     }
     public void GoToVideoVS()
     {
-        SceneManager.LoadScene("Scenes/VideoPlayerScene(VidSource)");
+        SceneManager.LoadScene("Scenes/VideoPlayerScene(Video Source)");
     }
     public void GoToAR()
     {
         SceneManager.LoadScene("Scenes/ARScene");
     }
-    public void GoToGuide()
-    {
-        SceneManager.LoadScene("Scenes/GuideScene");
-    }
     public void GoToMarker()
     {
         SceneManager.LoadScene("Scenes/Gallery Marker");
+    }
+
+    public void GoToInputName()
+    {
+        SceneManager.LoadScene("Scenes/InputName");
     }
 }

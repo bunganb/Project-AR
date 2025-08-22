@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mancing
+  m_text: Dengarkan
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eea3c3c9f15b3ea47814910ab40ba385, type: 2}
   m_sharedMaterial: {fileID: -4158697915807151703, guid: eea3c3c9f15b3ea47814910ab40ba385, type: 2}
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quizPanel: {fileID: 1937731858}
   questionText: {fileID: 1864513306}
-  playButton: {fileID: 0}
+  playButton: {fileID: 1402858327}
   audioSource: {fileID: 1772833395}
   slideDuration: 0.5
 --- !u!1 &103790101
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mancing
+  m_text: Tertawa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eea3c3c9f15b3ea47814910ab40ba385, type: 2}
   m_sharedMaterial: {fileID: -4158697915807151703, guid: eea3c3c9f15b3ea47814910ab40ba385, type: 2}
@@ -1253,7 +1253,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -11}
-  m_SizeDelta: {x: 100, y: 62.9964}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &615727312
 MonoBehaviour:
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e505a5784ba66d6458cb8fe43ec51334, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1346,6 +1346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: 0
+  nameInput: {fileID: 0}
+  requireName: 0
 --- !u!114 &658656192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,7 +1554,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -11}
-  m_SizeDelta: {x: 100, y: 62.9964}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &956383458
 MonoBehaviour:
@@ -1574,7 +1576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2965a01d5a9b15249ba691051668584e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1846,7 +1848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mancing
+  m_text: Berteriak
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eea3c3c9f15b3ea47814910ab40ba385, type: 2}
   m_sharedMaterial: {fileID: -4158697915807151703, guid: eea3c3c9f15b3ea47814910ab40ba385, type: 2}
@@ -1982,7 +1984,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mancing
+  m_text: Memukul
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eea3c3c9f15b3ea47814910ab40ba385, type: 2}
   m_sharedMaterial: {fileID: -4158697915807151703, guid: eea3c3c9f15b3ea47814910ab40ba385, type: 2}
@@ -2446,7 +2448,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -11}
-  m_SizeDelta: {x: 100, y: 62.9964}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1615429463
 MonoBehaviour:
@@ -2468,7 +2470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e505a5784ba66d6458cb8fe43ec51334, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2498,6 +2500,7 @@ GameObject:
   - component: {fileID: 1623859370}
   - component: {fileID: 1623859373}
   - component: {fileID: 1623859374}
+  - component: {fileID: 1623859375}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -2570,16 +2573,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedImages: {fileID: 1623859373}
   markerContents:
-  - markerName: hanni
-    prefab: {fileID: 1032067341958101153, guid: 0205eaf49561a824eae7eb3d97362d8c, type: 3}
-    audioClip: {fileID: 8300000, guid: 517e3b323c8decc4eab7752e5ffd3b27, type: 3}
-    question: 'Apa yang kamu lakukan jika teman terjatuh ? '
-  - markerName: girl
+  - markerName: understanding
+    prefab: {fileID: 1032067341958101153, guid: f83e107d3658b1d45b53af59ceeaaa0d, type: 3}
+    audioClip: {fileID: 8300000, guid: fe944b9d5582f7f468970fa0b7b537fb, type: 3}
+    question: Apa yang kamu lakukan saat teman bicara?
+  - markerName: empathy
     prefab: {fileID: 1032067341958101153, guid: 0e097b9d7eefb5d439b4863852a5794e, type: 3}
-    audioClip: {fileID: 8300000, guid: 517e3b323c8decc4eab7752e5ffd3b27, type: 3}
-    question: mancing emosi apakah boleh ?
+    audioClip: {fileID: 8300000, guid: bdc2d05f0d21e6545a298255488a71ba, type: 3}
+    question: Apa yang kamu lakukan jika teman sedih?
+  - markerName: bicker
+    prefab: {fileID: 1032067341958101153, guid: d7f6f75409593074e9b6285ccd399eb3, type: 3}
+    audioClip: {fileID: 8300000, guid: f30a1d62e90b75c49b7cf40ccc20debc, type: 3}
+    question: 'Apakah memukul teman itu baik ? '
   contentHandler: {fileID: 63945721}
-  hideUIDelay: 1
+  enableSafetyChecks: 1
+  safetyCheckInterval: 0.5
+  stopXROnSceneUnload: 1
+  trackingThreshold: 0.5
+  hideDelay: 0.2
+  useWorldSpacePositioning: 1
+  positionOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0}
+  scaleMultiplier: 0.2
+--- !u!114 &1623859375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623859369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b0e78151ea9944ea47dae385d11d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceptLimitedTracking: 1
 --- !u!1 &1734963196
 GameObject:
   m_ObjectHideFlags: 0
@@ -3253,7 +3281,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -11}
-  m_SizeDelta: {x: 100, y: 62.9964}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2045387397
 MonoBehaviour:
@@ -3275,7 +3303,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d8a2b36472d1f0041b0217825dd69780, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

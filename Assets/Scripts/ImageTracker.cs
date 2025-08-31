@@ -5,6 +5,13 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.Management;
 using UnityEngine.SceneManagement;
+[System.Serializable]
+public class QuizOption
+{
+    public string text;
+    public Sprite image;
+}
+
 
 [System.Serializable]
 public class MarkerContentData
@@ -12,7 +19,11 @@ public class MarkerContentData
     public string markerName;
     public GameObject prefab;
     public AudioClip audioClip;
+
+    [Header("Quiz")]
     public string question;
+    public char answer;
+    public List<QuizOption> options = new List<QuizOption>();
 }
 
 public class ImageTracker : MonoBehaviour
@@ -81,7 +92,6 @@ public class ImageTracker : MonoBehaviour
             safetyCheckCoroutine = StartCoroutine(PerformSafetyChecks());
         }
         
-        // Start tracking update coroutine for smooth hiding
         trackingUpdateCoroutine = StartCoroutine(UpdateTrackingStates());
     }
 
@@ -301,17 +311,24 @@ public class ImageTracker : MonoBehaviour
             foreach (var kvp in lastSeenTimes)
             {
                 if (lastTrackingStates.ContainsKey(kvp.Key) &&
-                    lastTrackingStates[kvp.Key] == TrackingState.Tracking &&
-                    kvp.Value > bestTime)
+                    lastTrackingStates[kvp.Key] == TrackingState.Tracking)
                 {
-                    bestMarker = kvp.Key;
-                    bestTime = kvp.Value;
+                    float seenAgo = Time.time - kvp.Value;
+
+                    if (seenAgo <= trackingThreshold && kvp.Value > bestTime)
+                    {
+                        bestMarker = kvp.Key;
+                        bestTime = kvp.Value;
+                    }
                 }
             }
 
             if (bestMarker != null)
             {
-                ShowMarkerContentByName(bestMarker);
+                if (currentActiveMarker != bestMarker)
+                {
+                    ShowMarkerContentByName(bestMarker);
+                }
             }
             else if (currentActiveMarker != null)
             {
@@ -323,6 +340,7 @@ public class ImageTracker : MonoBehaviour
             }
         }
     }
+
 
     bool IsTrackedImageValid(ARTrackedImage trackedImage)
     {
@@ -425,41 +443,94 @@ public class ImageTracker : MonoBehaviour
 
     void ShowMarkerContentByName(string markerName)
     {
-        if (isCleaningUp) return;
+        if (isCleaningUp || currentActiveMarker == markerName)
+        {
+            return;
+        }
+
+        currentActiveMarker = markerName;
+        Debug.Log($"[ImageTracker] Attempting to show content for new active marker: {markerName}");
 
         try
         {
             if (markerDictionary.TryGetValue(markerName, out var data))
             {
-                if (!spawnedPrefabs.ContainsKey(markerName))
+                if (!spawnedPrefabs.ContainsKey(markerName) || spawnedPrefabs[markerName] == null)
                 {
                     GameObject instance = Instantiate(
-                        data.prefab, 
-                        Vector3.zero, 
+                        data.prefab,
+                        Vector3.zero,
                         Quaternion.identity
                     );
 
                     instance.transform.localScale = Vector3.one * scaleMultiplier;
-                    instance.SetActive(true);
+                    instance.SetActive(false);
                     spawnedPrefabs[markerName] = instance;
-                }
-                else
-                {
-                    spawnedPrefabs[markerName].SetActive(true);
+                    Debug.Log($"[ImageTracker] Instantiated prefab for {markerName} on demand.");
                 }
 
-                if (currentActiveMarker != markerName && contentHandler != null)
-                {
-                    contentHandler.ShowContent(data.question, data.audioClip);
-                    Debug.Log($"[ImageTracker] Showed UI content for marker: {markerName}");
-                }
-
-                currentActiveMarker = markerName;
+                StartCoroutine(ShowSequence(markerName, data));
             }
         }
         catch (System.Exception ex)
         {
             Debug.LogError($"[ImageTracker] Exception in ShowMarkerContentByName: {ex.Message}");
+            currentActiveMarker = null;
+        }
+    }
+
+    IEnumerator ShowSequence(string markerName, MarkerContentData data)
+    {
+        if (spawnedPrefabs.TryGetValue(markerName, out GameObject prefabInstance) && prefabInstance != null)
+        {
+            prefabInstance.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning($"[ImageTracker] Prefab for {markerName} not found or invalid in ShowSequence. Aborting.");
+            currentActiveMarker = null; 
+            yield break;
+        }
+
+        yield return new WaitForSeconds(1f);
+    
+        if (currentActiveMarker != markerName)
+        {
+            if (prefabInstance != null) prefabInstance.SetActive(false);
+            yield break; 
+        }
+
+        if (contentHandler != null)
+        {
+            string[] answerTexts = new string[data.options.Count];
+            for (int i = 0; i < data.options.Count; i++)
+            {
+                answerTexts[i] = data.options[i].text;
+            }
+
+            if (contentHandler != null)
+            {
+                contentHandler.ShowContent(
+                    data.question,
+                    data.audioClip,
+                    data.options.ToArray(),  
+                    data.answer
+                );
+            }
+
+        }
+
+
+        yield return new WaitForSeconds(1f);
+    
+        if (currentActiveMarker != markerName)
+        {
+            yield break;
+        }
+
+        if (contentHandler != null && data.audioClip != null)
+        {
+            contentHandler.PlayAudio();
         }
     }
 
